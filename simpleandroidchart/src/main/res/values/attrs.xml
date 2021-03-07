@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LineChart">
+        <attr name="backgroundColor" format="color" />
+        <attr name="gridColor" format="color" />
+        <attr name="roundCorners" format="boolean" />
+        <attr name="crosshairColor" format="color" />
+    </declare-styleable>
+</resources>
