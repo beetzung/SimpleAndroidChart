@@ -286,18 +286,27 @@ public class LineChart extends View {
         float bottom = markerEntry.y - dpToPx(4);
         if (right >= getChartInnerRight()) {
             float width = right - left;
-            left -= (width + dpToPx(8));
-            right -= (width + dpToPx(8));
+            left -= (width + dpToPx(8)) + dpToPx(2);
+            right -= (width + dpToPx(8)) + dpToPx(2);
+        } else {
+            left += dpToPx(2);
+            right += dpToPx(2);
         }
         if (top <= getChartInnerTop()) {
             float height = bottom - top;
-            top += height + dpToPx(8);
-            bottom += height + dpToPx(8);
+            top += height + dpToPx(8) + dpToPx(2);
+            bottom += height + dpToPx(8) + dpToPx(2);
+        } else {
+            top -= dpToPx(2);
+            bottom -= dpToPx(2);
         }
         float midX = (left + right) / 2;
         float midY = (bottom + top) / 2;
         RectF rect = new RectF(left - dpToPx(4), top - dpToPx(4), right + dpToPx(4), bottom + dpToPx(4));
-        canvas.drawRoundRect(rect, dpToPx(8), dpToPx(8), backgroundPaint);
+        int crosshairColor = crosshairPaint.getColor();
+        crosshairPaint.setColor(adjustAlpha(crosshairColor));
+        canvas.drawRoundRect(rect, dpToPx(8), dpToPx(8), crosshairPaint);
+        crosshairPaint.setColor(crosshairColor);
         Paint.Align temp = textPaintMedium.getTextAlign();
         textPaintMedium.setTextAlign(Paint.Align.CENTER);
         canvas.drawText(s2, midX, (bottom + midY) / 2f, textPaintMedium);
